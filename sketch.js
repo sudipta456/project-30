@@ -1,124 +1,102 @@
 const Engine = Matter.Engine;
-const World= Matter.World;
+const World = Matter.World;
 const Bodies = Matter.Bodies;
-const Constraint = Matter.Constraint;
+const Body = Matter.Body;
+const Constraint=Matter.Constraint;
 
-var engine, world;
-var block1, block2, block3, block4, block5, block6, block7, block8, block9;
-var block10,block11,block12, block13, block14;
-var player;
-var ground;
+var  circle1,ground;	
+var world,sling;
 
-
-var sling;
-var player;
-
-var ball;
-var img;
-
-function preload(){
-  img = loadImage("polygon.png");
-
-}
 
 function setup() {
-  createCanvas(1500,600);
-  engine = Engine.create();
-    world = engine.world;
+	createCanvas(1200, 600);
+	rectMode(CENTER);
 
 
-  block1 = new Block(600,260,30,40);
-  block2 = new Block(570,260,30,40);
-  block3 = new Block(540,260,30,40);
-  block4 = new Block(630,260,30,40);
-  block5 = new Block(660,260,30,40);
+	engine = Engine.create();
+	world = engine.world;
+	
+ ground=createSprite(400,400,230,20)
+ ground=new Ground(400,400,230,20)
+ 	World.add(world, ground);
 
+ 	box1=new Box(310,370,30,40)
 
-
-  block6 = new Block(585,220,30,40);
-  block7 = new Block(555,220,30,40);
-  block8 = new Block(615,220,30,40);
-  block9 = new Block(645,220,30,40);
-
-
-
-  bolck10 = new Block(600,170,30,40);
-  block11 = new Block(570,180,30,40);
-  block12 = new Block(630,180,30,40);
-
-
-  block13 = new Block(600,140,30,40);
-
-  ground = new Ground(200,285,50,10);
+ box2=new Box(340,370,30,40)
+ box3=new Box(370,370,30,40)
+ box4=new Box(400,370,30,40)
+ box5=new Box(430,370,30,40)
+ box6=new Box(460,370,30,40)
+ box7=new Box(490,370,30,40)
+ box8=new Box(340,330,30,40)
+ box9=new Box(370,330,30,40)
+ box10=new Box(400,330,30,40)
+ box11=new Box(430,330,30,40)
+ box12=new Box(460,330,30,40)
+ box13=new Box(370,290,30,40)
+ box14=new Box(400,290,30,40)
+ box15=new Box(430,290,30,40)
+ box16=new Box(400,250,30,40)
+ circle1=new Circle(100,200,20)
+ slingShot =new Chain (circle1.body,{x:130,y:200})
  
 
-
-  block14 = new Block(900,170,30,40);
+Engine.run(engine);
+	
   
-
-  player = new Ball(50,200,30,30);
-
-  ball = Bodies.circle(50,200,20);
-  World.add(world,ball);
-
-  sling = new Chain(this.ball,{x:150, y:160});
-
 }
+
 
 function draw() {
-  background("light grey");
-  Engine.update(engine);
-
-  fill(rgb(135, 205, 236));
+	background("blue");
+Engine.update(engine);
+  rectMode(CENTER);
   
-  block1.display();
-  block2.display();
-  block3.display();
-  block4.display();
-  block5.display();
 
-  fill("lightBlue");
-  block6.display();
-  block7.display();
-  block8.display();
-  block9.display();
 
-  fill("lightPink");
-  bolck10.display();
-  block11.display();
-  block12.display();
-  fill(rgb(47, 48, 48));
+ 
+ 
+ ground=createSprite(400,400,230,20)
+  circle1.display();
+  sling.display();
+  box1.display();
+  box2.display();
+  box3.display();
+  box4.display();
+  box5.display();
+  box6.display();
+  box7.display();
+  box8.display();
+  box9.display();
+  box10.display();
+  box11.display();
+  box12.display();
+  box13.display();
+  box14.display();
+  box15.display();
+  box16.display();
+  ground.display();
 
-  block13.display();
+  drawSprites();
 
-  fill(rgb(135, 205, 236));
+ 
+}
  
    
-
-  ground.display();
- 
-  
-
-  imageMode(CENTER);
-  image(img,ball.position.x,ball.position.y,40,40);
-
-  sling.display();
-}
-
-
-function mouseDragged(){
-  Matter.Body.setPosition(this.ball, {x: mouseX , y: mouseY});
-}
-
-
-function mouseReleased(){
-  sling.fly();
-}
-
-function keyPressed(){
-	if(keyCode === 32)
-	{
-		Matter.Body.setPosition(player.body,{x:235, y:420});
-		chain.attach(player.body);
+  function mouseDragged(){
+	Matter.Body.setPosition(circle1.body,{x:mouseX,y:mouseY})
+	
+	
 	}
-}
+ 	function mouseReleased (){
+	sling.fly();
+	
+  }
+
+  function keyPressed(){
+	if(keyCode=== 32){
+	  
+	 Matter.Body.setPosition(circle.body,{x:130,y:200});
+	  sling.attach(circle1.body);
+	}
+  }
